@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans          
+    	http://www.springframework.org/schema/beans/spring-beans.xsd   
+    	http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd         
+    	http://code.alibabatech.com/schema/dubbo          
+    	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">  
+    	
+    <!-- 加载配置文件 -->  
+    <!-- <context:property-placeholder location="${dubboEnv}" />  -->  
+    <!-- 提供方应用信息，用于计算依赖关系 ;在 dubbo-admin 或 dubbo-monitor 会显示这个名字，方便辨识-->  
+    <dubbo:application name="ZKConfig-Web"/>
+   
+    <!-- 使用zookeeper注册中心暴露服务地址  -->  
+    <dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper.address}"/>
+    
+    <dubbo:reference interface="com.haier.zkconfig.interfaces.DemoService" id="demoService" check="false" />
+    <dubbo:reference interface="com.haier.zkconfig.interfaces.ZookeeperService" id="zookeeperService" check="false" />
+    
+</beans> 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <description>spring profile配置</description>
+    <!-- 开启注解配置 -->
+	<context:annotation-config/>
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.haier.zkconfig.provider"/>
+    <!-- 加载配置文件 -->  
+    <context:property-placeholder location="${dubboEnv}" />
+    <!-- 引入dubbo配置文件 -->
+    <import resource="classpath*:dubbo/dubbo-provider.xml" />
+    <bean class="com.haier.zkconfig.provider.util.ZookeeperNodeUtil" init-method="init"></bean>
+    
+</beans>

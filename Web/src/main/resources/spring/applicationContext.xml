@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:c="http://www.springframework.org/schema/c" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/jee 
+    http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+    <description>spring配置</description>
+    <context:property-placeholder location="file:${dubboEnv}" /> 
+    <import resource="classpath*:dubbo/dubbo-consumer.xml" />
+    <bean class="com.haier.zkconfig.sysserver.zookeeper.SpringUtils"></bean>
+    <bean class="com.haier.zkconfig.sysserver.zookeeper.ZkNodeInit" init-method="init"></bean>
+    
+
+</beans>

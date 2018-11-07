@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans          
+    	http://www.springframework.org/schema/beans/spring-beans.xsd   
+    	http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd         
+    	http://code.alibabatech.com/schema/dubbo          
+    	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">  
+
+    <!-- 提供方应用信息，用于计算依赖关系 ;在 dubbo-admin 或 dubbo-monitor 会显示这个名字，方便辨识-->  
+    <dubbo:application name="ZKConfig-provider-services"/>
+   
+    <!-- 使用zookeeper注册中心暴露服务地址  -->  
+    <dubbo:registry protocol="zookeeper" address="${dubbo.zookeeper.address}"/>
+   
+    <!-- 用dubbo协议暴露服务的端口,在dubbo.properties里配置 -->  
+    <dubbo:protocol name="dubbo" port="${dubbo.ZKConfig.provider.port}" />
+    
+    <!-- 暴露的服务接口 -->  
+    <dubbo:service interface="com.haier.zkconfig.interfaces.DemoService" ref="demoService" />
+    <dubbo:service interface="com.haier.zkconfig.interfaces.ZookeeperService" ref="zookeeperService" />
+    <dubbo:service interface="com.haier.zkconfig.interfaces.ZnodeSearchService" ref="znodeSearchService" />
+          
+</beans> 
