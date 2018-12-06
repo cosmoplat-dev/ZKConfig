@@ -17,8 +17,7 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Tuple;
 import redis.clients.jedis.BinaryClient.LIST_POSITION;
 
-/*
- * 
+/**
  * <p>Title: RedisUtil</p>  
  * Description: <pre>Redis 操作工具类</pre>  只能操作非集群redis
  */
