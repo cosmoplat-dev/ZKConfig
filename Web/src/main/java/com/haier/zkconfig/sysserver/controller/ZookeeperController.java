@@ -24,7 +24,12 @@ public class ZookeeperController {
 	private ZookeeperService zookeeperService;
 	@Autowired
 	private ZookeeperOpt zookeeperOpt;
-	
+
+	/**
+	 * getChilden获取一个node的子节点
+	 * @param path
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/getChilden", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getChilden(String path) {
@@ -49,6 +54,12 @@ public class ZookeeperController {
 		}
 		return result.toJsonString();
 	}
+
+	/**
+	 * 获取子节点及其数据
+	 * @param path
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/getChildenAndData", method = {RequestMethod.GET,RequestMethod.POST})
 	public String getChildenAndData(String path) {
@@ -73,8 +84,13 @@ public class ZookeeperController {
 		}
 		return result.toJsonString();
 	}
-	
-	
+
+	/**
+	 * 查找某个节点
+	 * @param menu
+	 * @param project
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/search", method = {RequestMethod.GET})
 	public String search(String menu,String project) {
@@ -92,7 +108,14 @@ public class ZookeeperController {
 			return new JsonResponseModel(ResponseCode.BUSINESS_ERROR, "系统异常").toJsonString();
 		}
 	}
-	
+
+	/**
+	 * 添加节点和数据
+	 * @param project
+	 * @param typeName
+	 * @param value
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value="/submitZkData", method = {RequestMethod.POST})
 	public String submitZkData(String project,String typeName,String value) {
